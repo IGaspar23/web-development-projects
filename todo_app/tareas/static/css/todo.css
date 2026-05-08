@@ -1,0 +1,204 @@
+/* static/css/todo.css */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    margin: 0;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.todo-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    padding: 40px;
+    width: 100%;
+    max-width: 650px;
+}
+
+.todo-header h1 {
+    margin: 0;
+    color: #333;
+    font-size: 28px;
+}
+
+.todo-subheader h2 {
+    color: #555;
+    font-size: 20px;
+    margin: 10px 0 30px;
+}
+
+/* Add task form */
+.add-task-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+.add-task-form input[type="text"] {
+    flex: 1;
+    padding: 12px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+    background: #fafafa;
+}
+.add-task-form input[type="text"]:focus {
+    border-color: #667eea;
+    background: white;
+    outline: none;
+}
+.add-task-form .btn {
+    background: #667eea;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.add-task-form .btn:hover {
+    background: #5a67d8;
+}
+
+/* Task list */
+.task-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.task-item {
+    display: flex;
+    align-items: center;
+    padding: 14px 16px;
+    margin-bottom: 8px;
+    background: #f9f9ff;
+    border-radius: 10px;
+    transition: background 0.2s, transform 0.1s;
+}
+.task-item:hover {
+    background: #eef0ff;
+}
+
+/* Completed task style */
+.task-item.completed .task-title {
+    text-decoration: line-through;
+    color: #aaa;
+    font-style: italic;
+}
+
+/* Task title */
+.task-title {
+    flex: 1;
+    font-size: 16px;
+    margin: 0 15px;
+}
+
+/* Action buttons container */
+.task-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+/* Base action button */
+.task-actions button,
+.task-actions a {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 6px;
+    transition: background 0.2s, color 0.2s;
+    color: #666;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Complete button */
+.complete-btn {
+    color: #48bb78 !important;   /* green */
+}
+.complete-btn:hover {
+    background: #d4f5e2;
+    color: #2f855a !important;
+}
+
+/* Edit button */
+.edit-btn {
+    color: #667eea !important;
+}
+.edit-btn:hover {
+    background: #dfe6fd;
+    color: #4c6ef5 !important;
+}
+
+/* Delete button */
+.delete-btn {
+    color: #fc8181 !important;
+}
+.delete-btn:hover {
+    background: #ffe5e5;
+    color: #c53030 !important;
+}
+
+/* Empty state */
+.no-tasks {
+    text-align: center;
+    color: #999;
+    padding: 30px;
+    font-size: 16px;
+}
+
+/* Edit inline form (hidden by default) */
+.edit-form {
+    display: none;
+}
+.task-item.editing .edit-form {
+    display: flex;
+    gap: 5px;
+    flex: 1;
+}
+.task-item.editing .task-title,
+.task-item.editing .task-actions {
+    display: none;
+}
+.edit-form input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 2px solid #667eea;
+    border-radius: 6px;
+    font-size: 16px;
+}
+.edit-form .btn-small {
+    padding: 8px 12px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.edit-form .btn-cancel {
+    background: #e0e0e0;
+    color: #333;
+}
+
+.logout-link {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.logout-link:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap">
+    <script src="https://unpkg.com/htmx.org@1.9.11" integrity="sha384-ujb1lZYygJmzgSwoxRggbCHcjc0rB2XoQrxeTUQyRjrOnlCoYta87iKBWq3EsdM2" crossorigin="anonymous"></script>
+
+</head>
+<body style="background-image: url('{{ image_url }}');">
+
+    <div class="container"> 
+        <h1>Hello again, wanna know the weather?</h1>
+
+        <form method="POST"
+            hx-post="{% url 'home' %}"
+            hx-target="#weather-result"
+            hx-swap="innerHTML"
+            hx-indicator="#spinner">
+            {% csrf_token %}
+            <input type="text" name="city" placeholder="Enter city name" required>
+            <button type="submit">Search!</button>
+        </form>
+
+        <!-- Spinner -->
+
+        
+        <!-- Weather result will be injected here -->
+        <div id="weather-result">
+            {% if temp %}
+                {% include 'weather_partial.html' %}
+            {% else %}
+                <div class="Welcome"> 
+                    Search for a city to see the weather
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if Exception_occurred %}
+    <script>
+        window.onload = function(){
+            alert('City information not found in our database. Please try again.');
+        }
+    </script>
+    {% endif %}
+    
+
+</body>
+</html>

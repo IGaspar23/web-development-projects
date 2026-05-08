@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My to-do list</title>
+    <link rel="stylesheet" href="{% static 'css/todo.css' %}">
+    <script src="https://kit.fontawesome.com/cb792c0850.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="todo-card">
+        <div class="todo-header">
+            <h1>Welcome, {{ user.username }}!</h1>
+        </div>
+        <div class="todo-subheader">
+            <h2>My Tasks</h2>
+        </div>
+        <a href="{% url 'signout' %}" class="logout-link">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+        </a>
+
+        <!-- Add task form   -->
+        <div class="add-task-section">
+            <form method="post">
+                {% csrf_token %}
+                <div class="add-task-form">
+                    <input type="text" name="title" required placeholder="Enter today's task ">
+                    <input type="submit" class="btn" value="Add Task">
+                </div>
+            </form>
+        </div>
+
+        <!-- Task list   -->
+        {% if res %}
+            <ul class="task-list">
+                {% for task in res %}
+                    <div class="task-item">
+                        <h5> {{task.srno}} </h5>
+                        <span class="task-label"> {{task.title}} </span>
+                        <div class="task-actions" style="display: flex; gap: 10px;">
+                        <a href="/edit_task/{{task.srno}}"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a href="/delete_task/{{task.srno}}"><i class="fa-solid fa-trash"></i></a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="no-tasks">No tasks yet. Add your first task above!</p>
+        {% endif %}
+    </div>
+</body>
+</html>

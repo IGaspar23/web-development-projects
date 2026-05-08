@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Updated List</title>
+    <link rel="stylesheet" href="{% static 'css/todo.css' %}">
+    <script src="https://kit.fontawesome.com/cb792c0850.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="todo-card">
+        <div class="todo-header">
+            <h1>Welcome, {{ user.username }}! Did you miss something?</h1>
+        </div>
+        <div class="todo-subheader">
+            <h2>Update tasks</h2>
+        </div>
+        <a href="{% url 'signout' %}" class="logout-link">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+        </a>
+
+        <!-- Update task form   -->
+        <div class="add-task-section">
+            <form method="post">
+                {% csrf_token %}
+                <div class="add-task-form">
+                    <input type="text" name="title" required placeholder="Enter updated task ",
+                    value="{{obj.title}}">
+                    <input type="submit" class="btn" value="Update Task">
+                </div>
+            </form>
+        </div>
+
+    
+        <!-- Task list   -->
+        {% if res %}
+            <ul class="task-list">
+                {% for task in res %}
+                    <div class="task-item">
+                        <h5> {{task.srno}} </h5>
+                        <span class="task-label"> {{task.title}} </span>
+                        <div class="task-actions">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        <i class="fa-solid fa-trash"></i>
+                        </div>
+                    </div>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="no-tasks">Enter the new title for your task</p>
+        {% endif %}
+    </div>
+</body>
+</html>
