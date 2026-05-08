@@ -14,8 +14,8 @@ def home(request):
             print(city)
         else:
             city = 'Chicago'
-
-    url = f'https://api.openweathermap.org/data/2.5/weather?q={city}&appid=89fbbc3b8358d8b2c4a8f696b1d2438d'
+    my_waether_api = config('WEATHER_API_KEY')
+    url = f'https://api.openweathermap.org/data/2.5/weather?q={city}&appid={my_weather_api}'
     PARAMS ={'units': 'metric'}
 
     #API_KEY =  ''
